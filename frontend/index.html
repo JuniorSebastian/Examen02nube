@@ -55,14 +55,6 @@
             border-color: #00d8ff;
         }
 
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
         label {
             display: block;
             margin-bottom: 6px;
@@ -119,55 +111,46 @@
     <div class="form-container">
         <h2>Sistema de Gestión</h2>
 
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="login">Iniciar Sesión</button>
-            <button class="tab-btn" data-tab="register">Registrarse</button>
-        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Registrarse</a>
+            </li>
+        </ul>
 
-        <div id="login" class="tab-content active">
-            <form id="loginForm">
-                <label for="loginEmail">Correo Electrónico</label>
-                <input type="email" id="loginEmail" required />
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <form id="loginForm">
+                    <label for="loginEmail">Correo Electrónico</label>
+                    <input type="email" id="loginEmail" required />
 
-                <label for="loginPassword">Contraseña</label>
-                <input type="password" id="loginPassword" required />
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" required />
 
-                <button type="submit" class="btn btn-login">Iniciar Sesión</button>
-            </form>
-        </div>
+                    <button type="submit" class="btn btn-login">Iniciar Sesión</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                <form id="registerForm">
+                    <label for="registerNombre">Nombre Completo</label>
+                    <input type="text" id="registerNombre" required />
 
-        <div id="register" class="tab-content">
-            <form id="registerForm">
-                <label for="registerNombre">Nombre Completo</label>
-                <input type="text" id="registerNombre" required />
+                    <label for="registerEmail">Correo Electrónico</label>
+                    <input type="email" id="registerEmail" required />
 
-                <label for="registerEmail">Correo Electrónico</label>
-                <input type="email" id="registerEmail" required />
+                    <label for="registerPassword">Contraseña</label>
+                    <input type="password" id="registerPassword" required />
 
-                <label for="registerPassword">Contraseña</label>
-                <input type="password" id="registerPassword" required />
-
-                <button type="submit" class="btn btn-register">Registrarse</button>
-            </form>
+                    <button type="submit" class="btn btn-register">Registrarse</button>
+                </form>
+            </div>
         </div>
 
         <div id="alertContainer"></div>
     </div>
 
-    <script>
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabButtons.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-
-                btn.classList.add('active');
-                document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/login.js"></script>
 </body>
