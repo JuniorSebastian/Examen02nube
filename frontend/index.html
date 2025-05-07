@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sistema de Gestión</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+            color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #2e2e2e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00d8ff;
+            margin-bottom: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: #aaa;
+            font-size: 16px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: #00d8ff;
+            border-color: #00d8ff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            background-color: #444;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-login {
+            background-color: #00d8ff;
+            color: #000;
+        }
+
+        .btn-login:hover {
+            background-color: #00b5d6;
+        }
+
+        .btn-register {
+            background-color: #00c46a;
+            color: #000;
+        }
+
+        .btn-register:hover {
+            background-color: #00a95d;
+        }
+
+        #alertContainer {
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff4e4e;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Sistema de Gestión</h2>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="login">Iniciar Sesión</button>
+            <button class="tab-btn" data-tab="register">Registrarse</button>
+        </div>
+
+        <div id="login" class="tab-content active">
+            <form id="loginForm">
+                <label for="loginEmail">Correo Electrónico</label>
+                <input type="email" id="loginEmail" required />
+
+                <label for="loginPassword">Contraseña</label>
+                <input type="password" id="loginPassword" required />
+
+                <button type="submit" class="btn btn-login">Iniciar Sesión</button>
+            </form>
+        </div>
+
+        <div id="register" class="tab-content">
+            <form id="registerForm">
+                <label for="registerNombre">Nombre Completo</label>
+                <input type="text" id="registerNombre" required />
+
+                <label for="registerEmail">Correo Electrónico</label>
+                <input type="email" id="registerEmail" required />
+
+                <label for="registerPassword">Contraseña</label>
+                <input type="password" id="registerPassword" required />
+
+                <button type="submit" class="btn btn-register">Registrarse</button>
+            </form>
+        </div>
+
+        <div id="alertContainer"></div>
+    </div>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                btn.classList.add('active');
+                document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+    </script>
+    <script src="js/login.js"></script>
+</body>
+</html>
